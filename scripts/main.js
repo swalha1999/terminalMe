@@ -81,10 +81,6 @@ async function getInputValue() {
     trueValue(value);
     createText("<a href='https://github.com/J0kErF' target='_blank'><i class='fab fa-github white'></i> github.com/J0kErF</a>")
   }
-  else if (value === "swalha") {
-    trueValue(value);
-    createText("swalha is GAY!")
-  }
   else if (value === "about") {
     trueValue(value);
     createText("Hi, my name is Mohammad ;)")
