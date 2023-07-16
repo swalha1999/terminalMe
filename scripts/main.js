@@ -1,7 +1,10 @@
+import {FileSystem} from './fileSystem';
 
 const app = document.querySelector("#app");
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
+const fs = new FileSystem();
+const path ='';
 
 app.addEventListener("keypress", async function (event) {
   if (event.key === "Enter") {
@@ -101,6 +104,21 @@ async function getInputValue() {
   else if (value === "clear") {
     document.querySelectorAll("p").forEach(e => e.parentNode.removeChild(e));
     document.querySelectorAll("section").forEach(e => e.parentNode.removeChild(e));
+  }
+  //file system commands
+  else if(value.startsWith("mkdir ")){
+    trueValue(value);
+    fs.createDirectory(value.split(' ')[1]);
+  }
+  else if(value === "ls"){
+    createText(fs.readDirectory(path))
+  }
+  else if(value.startsWith("cd ")){
+      patharray = path+value.split(' ')[1].startsWith("/")? value.split(' ')[1]:'/'+value.split(' ')[1];
+      if(fs.getCookie(patharray)) path = patharray;
+      else{ 
+        createText(`path not found: ${value.split(' ')[1]}`);
+      }
   }
   else {
     falseValue(value);
