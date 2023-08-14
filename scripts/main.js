@@ -1,5 +1,9 @@
+
 const app = document.querySelector("#app");
 const delay = ms => new Promise(res => setTimeout(res, ms));
+
+const history = [];
+var iter=0;
 
 app.addEventListener("keypress", async function (event) {
   if (event.key === "Enter") {
@@ -64,14 +68,15 @@ function removeInput() {
 }
 
 async function getInputValue() {
-
+  iter =0;
   const value = document.querySelector("input").value;
+  history.push(value);
   if (value === "help" || value ==="-h") {
     trueValue(value);
 
     createCode("projects", "My github page with my projects. Follow me there ;)");
     createCode("about me", "Who am i and what do i do.");
-    createCode("social -a", "All my social networks.");
+    createCode("social", "All my social networks.");
     createCode("clear", "Clean the terminal.");
 
   }
@@ -81,31 +86,29 @@ async function getInputValue() {
   }
   else if (value === "about") {
     trueValue(value);
-    createText("Hi, my name is Mohammad ;)")
+    createText("Hi, my name is Mohammad ")
     createText("computer science student, looking for internship or part-time job as a software engineer. I am a self-motivated, hard-working, quick learner and passionate about learning new technologies.")
     createText("Experience in C++, Python, C, firebase, MySQL, Docker, Git, and Agile development.")
     createText("Worked on multiple projects using different technologies and frameworks. I am a team player and I am always ready to learn new things.")
   }
-  else if (value === "social -a") {
+  else if (value === "social") {
     trueValue(value);
     createText("<a href='https://github.com/J0kErF' target='_blank'><i class='fab fa-github white'></i> github.com/J0kErF</a>")
     createText("<a href='https://www.linkedin.com/in/mohammad-yosef/' target='_blank'><i class='fab fa-linkedin-in white'></i> linkedin.com/in/mohammad-yosef</a>")
-  }
-  else if (value === "social") {
-    trueValue(value);
-    createText("Didn't you mean: social -a?")
   }
 
   else if (value === "clear") {
     document.querySelectorAll("p").forEach(e => e.parentNode.removeChild(e));
     document.querySelectorAll("section").forEach(e => e.parentNode.removeChild(e));
   }
+  
+  // else if there is no command like this.
   else {
     falseValue(value);
     createText(`command not found: ${value}`)
   }
 }
-
+//create true value function to create the p tag with the text inside.
 function trueValue(value) {
 
   const div = document.createElement("section");
@@ -119,7 +122,7 @@ function trueValue(value) {
   div.appendChild(mensagem);
   app.appendChild(div);
 }
-
+//create false value function to create the p tag with the text inside.
 function falseValue(value) {
 
   const div = document.createElement("section");
@@ -133,7 +136,7 @@ function falseValue(value) {
   div.appendChild(mensagem);
   app.appendChild(div);
 }
-
+//create text function to create the p tag with the text inside.
 function createText(text, classname) {
   const p = document.createElement("p");
 
@@ -142,7 +145,7 @@ function createText(text, classname) {
     ;
   app.appendChild(p);
 }
-
+//create code function to create the code tag with the text inside.
 function createCode(code, text) {
   const p = document.createElement("p");
   p.setAttribute("class", "code");
@@ -151,4 +154,19 @@ function createCode(code, text) {
   app.appendChild(p);
 }
 
+
+//event listener for arrow keys to get the previous commands from the history array.
+document.addEventListener("keydown", function(event) {
+  const input = document.querySelector("input");
+
+  if (event.key === "ArrowUp") {
+    if (history.length === 0 || iter === history.length) return;
+    iter++;
+    input.value = history[history.length - iter];
+  } else if (event.key === "ArrowDown") {
+    if (history.length === 0 || iter === 1) return;
+    iter--;
+    input.value = history[history.length - iter];
+  }
+});
 open_terminal();
