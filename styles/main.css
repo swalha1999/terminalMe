@@ -43,6 +43,7 @@ body{
   align-items: center;
   justify-content: center;
 }
+
 .container{
   display:flex;
   flex-direction: column;
@@ -55,6 +56,7 @@ body{
   margin:20px;
   cursor: text;
 }
+
 .menu{
   display:flex;
   align-items: center;
@@ -125,7 +127,7 @@ p.code{
   color:#66C2CD;
   margin-left:8px;
 }
-span.text{
+span{
   margin-left:16px;
   color:white;
 }
@@ -169,6 +171,13 @@ input:focus{
   align-items: center;
   padding:8px 0;
 }
+
+.path{
+  display:flex;
+  align-items: center;
+  padding:8px 8px 8px 0;
+}
+
 .type2{
   display:flex;
   align-items: center;
