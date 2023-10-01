@@ -75,7 +75,7 @@ async function getInputValue() {
     trueValue(value);
 
     createCode("projects", "My github page with my projects. Follow me there ;)");
-    createCode("about me", "Who am i and what do i do.");
+    createCode("about", "Who am i and what do i do.");
     createCode("social", "All my social networks.");
     createCode("clear", "Clean the terminal.");
 
