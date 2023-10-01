@@ -8,8 +8,27 @@ var iter=0;
 
 
 export default function bash(app) {
+    app.addEventListener("keydown", historyEvent);
     open_terminal();
 }
+
+async function historyEvent(event) {
+    if (event.key === "ArrowUp") {
+        if(iter>0){
+            iter--;
+            const input = document.querySelector("input");
+            input.value = history[iter];
+        }
+    }
+    else if (event.key === "ArrowDown") {
+        if(iter<history.length-1){
+            iter++;
+            const input = document.querySelector("input");
+            input.value = history[iter];
+        }
+    }
+}
+
 
 async function open_terminal() {
   println("Welcome");
@@ -29,7 +48,8 @@ async function open_terminal() {
 
 async function new_line() {
     //lets block the code until the user types something
-    const command = await scanf_promise();
+    const command = await scanf_promise(true);
+    app.removeEventListener("keydown", historyEvent);
 
     //add the command to the history
     history.push(command);
@@ -39,6 +59,7 @@ async function new_line() {
         await printName();
     }
 
+    app.addEventListener("keydown", historyEvent);
     new_line();
  }
 
