@@ -28,7 +28,7 @@ async function open_terminal() {
 
 async function new_line() {
     //lets block the code until the user types something
-    const command = await scanf_promise();
+    const command = await scanf_promise(true);
 
     //add the command to the history
     history.push(command);

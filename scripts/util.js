@@ -25,44 +25,64 @@ function removeInputListener() {
     document.removeEventListener("keypress", saveInput);
 }
 
-function newInputField() {
-    const input = document.createElement("input");
-    input.type = "text";
-    input.autofocus = true;
-    app.appendChild(input);
-    input.focus();
+function newInputField(isBash = false) {
+    if(isBash){
+        const div = document.createElement("div");
+        div.setAttribute("class", "type")
+        const i = document.createElement("i");
+        i.setAttribute("class", "fas fa-angle-right icone")
+        const input = document.createElement("input");
+        div.appendChild(i);
+        div.appendChild(input);
+        app.appendChild(div);
+        input.focus();
+    }
+    else{
+        const input = document.createElement("input");
+        input.type = "text";
+        input.autofocus = true;
+        app.appendChild(input);
+        input.focus();
+    }
 }
 
-function removeInputField() {
-    const input = document.querySelector("input");
-    app.removeChild(input);
+function removeInputField(isBash = false) {
+    if(isBash){
+        const div = document.querySelector(".type");
+        app.removeChild(div);
+    }
+    else{
+        const input = document.querySelector("input");
+        app.removeChild(input);
+    }
 }
 
-function addValueToScreen(value) {
+function addValueToScreen(value, isBash = false) {
     const div = document.createElement("section");
-    // div.setAttribute("class", "type2")
     const i = document.createElement("i");
-    // i.setAttribute("class", "fas fa-angle-right icone")
     const mensagem = document.createElement("h2");
-    // mensagem.setAttribute("class", "sucess")
+    if (isBash){
+        div.setAttribute("class", "type2")
+        i.setAttribute("class", "fas fa-angle-right icone")
+        mensagem.setAttribute("class", "sucess")
+    }
     mensagem.textContent = `${value}`;
     div.appendChild(i);
     div.appendChild(mensagem);
     app.appendChild(div);
   }
 
-export function scanf_promise() {
+export function scanf_promise(isBash = false) {
     return new Promise((resolve) => {
-        newInputField();
+        newInputField(isBash);
         addInputListener();
 
         function checkInput() {
             if (isValidInput) {
                 removeInputListener();
-                addValueToScreen(savedInput);
-                removeInputField();
+                addValueToScreen(savedInput, isBash);
+                removeInputField(isBash);
                 isValidInput = false;
-                // attacthEventlistener(app);
                 resolve(savedInput);
             } else {
                 requestAnimationFrame(checkInput);
