@@ -1,6 +1,7 @@
 class FileSystem {
     constructor() {
       this.root = {};
+      this.currentDirectory = '/';
     }
     // stands for MkDir
     createDirectory(path) {
@@ -78,6 +79,7 @@ class FileSystem {
     getEntryName(path) {
       return path.substring(path.lastIndexOf('/') + 1);
     }
+    
   }
   
   // Example usage
@@ -90,7 +92,6 @@ class FileSystem {
     export async function enter_command() {
     print("> ");
     const name = await scanf_promise();
-    println(`Hello, ${name}`);
 }
   
   // Read the directory
@@ -100,7 +101,7 @@ class FileSystem {
   // Read the file
   const fileContent = fileSystem.readFile('/root/documents/file1.txt');
   console.log(fileContent); // Output: 'This is the content of file1.txt'
-  console.log(fileSystem.ls('/root'));
+  console.log(fileSystem.root);
   // Delete the file
   fileSystem.deleteEntry('/root/documents/file1.txt');
   

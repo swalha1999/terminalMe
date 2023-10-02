@@ -10,6 +10,13 @@ export function println(text, classname) {
     app.appendChild(p);
 }
 
+export function printnln(text, classname) {
+  const span = document.createElement("span");
+  if (classname) span.className = classname;
+  span.innerHTML = text;
+  app.appendChild(span);
+}
+
 function saveInput(event) {
     if (event.key === "Enter") {
         savedInput = document.querySelector("input").value;
