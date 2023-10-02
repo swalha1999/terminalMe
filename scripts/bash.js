@@ -9,7 +9,7 @@ var iter=0;
 
 export default function bash(app) {
     app.addEventListener("keydown", historyEvent);
-    open_terminal();
+    bashStartup();
 }
 
 async function historyEvent(event) {
@@ -30,7 +30,7 @@ async function historyEvent(event) {
 }
 
 
-async function open_terminal() {
+async function bashStartup() {
   println("Welcome");
   await delay(150);
   println("Starting the server...");
@@ -42,25 +42,23 @@ async function open_terminal() {
   createCode("social -a", "All my social networks.");
 
   await delay(150);
-  new_line();
+  bashMainLoop();
 
 }
 
-async function new_line() {
-    //lets block the code until the user types something
-    const command = await scanf_promise(true);
-    app.removeEventListener("keydown", historyEvent);
-
-    //add the command to the history
-    history.push(command);
-    iter++;
-    
-    if (command === "about") {
-        await printName();
+async function bashMainLoop() {
+    var loopCount = 0;
+    while(true){
+        console.log(loopCount++);
+        const command = await scanf_promise(true);
+        app.removeEventListener("keydown", historyEvent);
+        history.push(command);
+        iter=history.length;        
+        if (command === "about") {
+            await printName();
+        }
+        app.addEventListener("keydown", historyEvent);
     }
-
-    app.addEventListener("keydown", historyEvent);
-    new_line();
  }
 
 

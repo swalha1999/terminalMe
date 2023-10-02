@@ -10,6 +10,13 @@ export function println(text, classname) {
     app.appendChild(p);
 }
 
+export function printnln(text, classname) {
+    const p = document.createElement("span");
+    if (classname) p.className = classname;
+    p.innerHTML = text;
+    app.appendChild(p);
+}
+
 function saveInput(event) {
     if (event.key === "Enter") {
         savedInput = document.querySelector("input").value;
@@ -30,9 +37,13 @@ function newInputField(isBash = false) {
         const div = document.createElement("div");
         div.setAttribute("class", "type")
         const i = document.createElement("i");
+        const path = document.createElement("span");
+        path.setAttribute("class", "path")
+        path.textContent = "root@localhost:~$ ";
         i.setAttribute("class", "fas fa-angle-right icone")
         const input = document.createElement("input");
         div.appendChild(i);
+        div.appendChild(path);
         div.appendChild(input);
         app.appendChild(div);
         input.focus();
@@ -61,13 +72,18 @@ function addValueToScreen(value, isBash = false) {
     const div = document.createElement("section");
     const i = document.createElement("i");
     const mensagem = document.createElement("h2");
+    const path = document.createElement("span");
+    path.setAttribute("class", "path");
+    path.textContent = "root@localhost:~$ ";
     if (isBash){
-        div.setAttribute("class", "type2")
-        i.setAttribute("class", "fas fa-angle-right icone")
-        mensagem.setAttribute("class", "sucess")
+        div.setAttribute("class", "type2");
+        i.setAttribute("class", "fas fa-angle-right icone");
+        mensagem.setAttribute("class", "sucess");
+        
     }
     mensagem.textContent = `${value}`;
     div.appendChild(i);
+    if(isBash) div.appendChild(path); 
     div.appendChild(mensagem);
     app.appendChild(div);
   }

@@ -87,10 +87,10 @@ class FileSystem {
   fileSystem.createDirectory('/root');
   
   
-    export async function enter_command() {
-    print("> ");
-    const name = await scanf_promise();
-    println(`Hello, ${name}`);
+export async function enter_command() {
+  print("> ");
+  const name = await scanf_promise();
+  println(`Hello, ${name}`);
 }
   
   // Read the directory
