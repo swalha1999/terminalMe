@@ -1,4 +1,4 @@
-import { println, scanf_promise, printnln } from "./util.js";
+import { println, scanf_promise } from "./util.js";
 
 
 export async function printName() {

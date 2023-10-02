@@ -32,7 +32,7 @@ function newInputField(isBash = false) {
         const i = document.createElement("i");
         const path = document.createElement("span");
         path.setAttribute("class", "path")
-        path.textContent = "root@localhost:~$ ";
+        path.textContent = "root@MohammadYosef:~$ ";
         i.setAttribute("class", "fas fa-angle-right icone")
         const input = document.createElement("input");
         div.appendChild(i);
@@ -67,7 +67,7 @@ function addValueToScreen(value, isBash = false) {
     const mensagem = document.createElement("h2");
     const path = document.createElement("span");
     path.setAttribute("class", "path");
-    path.textContent = "root@localhost:~$ ";
+    path.textContent = "root@MohammadYosef:~$ ";
     if (isBash){
         div.setAttribute("class", "type2");
         i.setAttribute("class", "fas fa-angle-right icone");
