@@ -1,74 +1,72 @@
-import { println, scanf_promise } from "./util.js";
+import { println, scanf_promise, clearScreen } from "./util.js";
 import { printName } from "./about.js";
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
-const history = [];
-var iter=0;
+const commandHistory = [];
+var commandIterator = 0;
 
 
 export default function bash(app) {
-    app.addEventListener("keydown", historyEvent);
+    app.addEventListener("keydown", commandHistoryEventHandler);
     bashStartup();
 }
 
-async function historyEvent(event) {
+async function commandHistoryEventHandler(event) {
     if (event.key === "ArrowUp") {
-        if(iter>0){
-            iter--;
+        if (commandIterator > 0) {
+            commandIterator--;
             const input = document.querySelector("input");
-            input.value = history[iter];
+            input.value = commandHistory[commandIterator];
         }
     }
     else if (event.key === "ArrowDown") {
-        if(iter<history.length-1){
-            iter++;
+        if (commandIterator < commandHistory.length - 1) {
+            commandIterator++;
             const input = document.querySelector("input");
-            input.value = history[iter];
+            input.value = commandHistory[commandIterator];
         }
     }
 }
 
-
 async function bashStartup() {
-  println("Welcome");
-  await delay(150);
-  println("Starting the server...");
-  await delay(700);
-  println("You can run several commands:");
+    await bashWelcome();
+    bashMainLoop();
 
-  createCode("about", "Who am i and what do i do.");
-  createCode("help or -h", "See all commands.");
-  createCode("social -a", "All my social networks.");
+}
 
-  await delay(150);
-  bashMainLoop();
-
+async function bashWelcome() {
+    println("Welcome to my website!");
+    println("Starting the server...");
+    println("You can run several commands:");
+    createCode("about", "Who am i and what do i do.");
+    createCode("help or -h", "See all commands.");
+    createCode("social -a", "All my social networks.");
 }
 
 async function bashMainLoop() {
     var loopCount = 0;
-    while(true){
+    while (true) {
         console.log(loopCount++);
         const command = await scanf_promise(true);
-        app.removeEventListener("keydown", historyEvent);
-        history.push(command);
-        iter=history.length;        
+        app.removeEventListener("keydown", commandHistoryEventHandler);
+        commandHistory.push(command);
+        commandIterator = commandHistory.length;
         if (command === "about") {
             await printName();
         }
-        app.addEventListener("keydown", historyEvent);
+        if(command === "clear"){
+            await clearScreen();
+        }
+        app.addEventListener("keydown", commandHistoryEventHandler);
     }
- }
+}
 
-
-//create code function to create the code tag with the text inside.
 function createCode(code, text) {
-  const p = document.createElement("p");
-  p.setAttribute("class", "code");
-  p.innerHTML =
-    `${code} <br/><span class='text'> ${text} </span>`;
-  app.appendChild(p);
+    const p = document.createElement("p");
+    p.setAttribute("class", "code");
+    p.innerHTML =
+        `${code} <br/><span class='text'> ${text} </span>`;
+    app.appendChild(p);
 }
 
 

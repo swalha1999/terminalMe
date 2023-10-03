@@ -1,7 +1,10 @@
 const app = document.querySelector("#app");
-
 var savedInput = "";
 var isValidInput = false;
+
+export function delay(ms) {
+    return new Promise(res => setTimeout(res, ms));
+}
 
 export function println(text, classname) {
     const p = document.createElement("p");
@@ -33,7 +36,7 @@ function removeInputListener() {
 }
 
 function newInputField(isBash = false) {
-    if(isBash){
+    if (isBash) {
         const div = document.createElement("div");
         div.setAttribute("class", "type")
         const i = document.createElement("i");
@@ -48,7 +51,7 @@ function newInputField(isBash = false) {
         app.appendChild(div);
         input.focus();
     }
-    else{
+    else {
         const input = document.createElement("input");
         input.type = "text";
         input.autofocus = true;
@@ -58,11 +61,11 @@ function newInputField(isBash = false) {
 }
 
 function removeInputField(isBash = false) {
-    if(isBash){
+    if (isBash) {
         const div = document.querySelector(".type");
         app.removeChild(div);
     }
-    else{
+    else {
         const input = document.querySelector("input");
         app.removeChild(input);
     }
@@ -75,18 +78,18 @@ function addValueToScreen(value, isBash = false) {
     const path = document.createElement("span");
     path.setAttribute("class", "path");
     path.textContent = "root@localhost:~$ ";
-    if (isBash){
+    if (isBash) {
         div.setAttribute("class", "type2");
         i.setAttribute("class", "fas fa-angle-right icone");
         mensagem.setAttribute("class", "sucess");
-        
+
     }
     mensagem.textContent = `${value}`;
     div.appendChild(i);
-    if(isBash) div.appendChild(path); 
+    if (isBash) div.appendChild(path);
     div.appendChild(mensagem);
     app.appendChild(div);
-  }
+}
 
 export function scanf_promise(isBash = false) {
     return new Promise((resolve) => {
@@ -107,4 +110,10 @@ export function scanf_promise(isBash = false) {
 
         checkInput();
     });
+}
+
+export async function clearScreen() {
+    while (app.hasChildNodes()) {
+        app.removeChild(app.firstChild);
+    }
 }
