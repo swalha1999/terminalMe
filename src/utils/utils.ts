@@ -1,6 +1,15 @@
-const app: HTMLElement | null = document.querySelector('#app');
+const app: HTMLElement = document.querySelector('#app') as HTMLElement;
 let savedInput = '';
 let isValidInput = false;
+let ip = '';
+
+export function getIp(): string {
+	return ip;
+}
+
+export function setIp(newIp: string): void {
+	ip = newIp;
+}
 
 export function delay(ms: number): Promise<void> {
 	return new Promise(res => setTimeout(res, ms));
@@ -16,7 +25,7 @@ function printSingleLine(text: string, classname: string | undefined = undefined
 		p.className = classname;
 	}
 	p.innerHTML = text;
-	app?.appendChild(p);
+	app.appendChild(p);
 }
 
 export function printnln(text: string, classname: string | undefined = undefined): void {
@@ -25,12 +34,12 @@ export function printnln(text: string, classname: string | undefined = undefined
 		span.className = classname;
 	}
 	span.innerHTML = text;
-	app?.appendChild(span);
+	app.appendChild(span);
 }
 
 export function newIine(): void {
 	const p: HTMLElement = document.createElement('p');
-	app?.appendChild(p);
+	app.appendChild(p);
 }
 
 function saveInput(event: KeyboardEvent): void {
@@ -56,12 +65,12 @@ function newInputField(isBash = false): void {
 	input.type = 'text';
 	input.autofocus = true;
 	div.appendChild(input);
-	while (app?.lastChild !== null && app?.lastChild.nodeName === 'SPAN')  {
-		const lastChild = app?.lastChild;
-		app?.removeChild(lastChild);
+	while (app.lastChild !== null && app.lastChild.nodeName === 'SPAN')  {
+		const lastChild = app.lastChild;
+		app.removeChild(lastChild);
 		div.insertBefore(lastChild as Node, div.firstChild);
 	}
-	app?.appendChild(div);
+	app.appendChild(div);
 	input.focus();
 }
 
@@ -75,11 +84,11 @@ function addValueToScreen(value: string): void {
 	if (value === '') return;
 	const mensagem: HTMLHeadingElement = document.createElement('h2');
 	mensagem.textContent = `${value}`;
-	if (app?.lastChild?.nodeName === 'DIV') {
-		app?.lastChild?.appendChild(mensagem);
+	if (app.lastChild?.nodeName === 'DIV') {
+		app.lastChild?.appendChild(mensagem);
 		return;
 	}
-	app?.appendChild(mensagem);
+	app.appendChild(mensagem);
 	
 }
 
@@ -104,9 +113,11 @@ export function scanf_promise(): Promise<string> {
 	});
 }
 
-export function clearScreen(){
-	while (app?.hasChildNodes()) {
-		app?.removeChild(app.firstChild as Node);
+export async function clearScreen(){
+	// app.innerHTML='';
+	while (app.hasChildNodes()) {
+		await delay(5);
+		app.removeChild(app.firstChild as Node);
 	}
 }
 
@@ -114,6 +125,6 @@ export function createCode(code: string, text: string): void {
 	const p: HTMLParagraphElement = document.createElement('p');
 	p.setAttribute('class', 'code');
 	p.innerHTML = `${code} <br/><span class='text'> ${text} </span>`;
-	app?.appendChild(p);
+	app.appendChild(p);
 	
 }

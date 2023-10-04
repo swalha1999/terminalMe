@@ -1,7 +1,8 @@
-import { println, scanf_promise, clearScreen , delay, createCode, printnln} from '../utils/utils';
-import { printName, printlnName } from '../bin/about';
-import { cowsay } from './cowsay';
-import {figlet} from './figlet';
+import { println, scanf_promise, clearScreen , delay, createCode, printnln, getIp} from '../utils/utils';
+// import { printName, printlnName } from '../bin/about';
+// import { cowsay } from './cowsay';
+// import {figlet} from './figlet';
+import * as bin from '../bin';
 
 
 
@@ -57,31 +58,39 @@ async function bashWelcome(): Promise<void> {
 }
 
 async function bashMainLoop(app: HTMLElement): Promise<void> {
+	// println(`Your IP is ${}`);
+	
 	while (true) {
-		printnln('swalha@Falc0n', 'green');
+		printnln(`swalha@Falc0n`, 'green');
 		printnln(':');
-		printnln('~/terminalMe', 'blue'); // here we what to print the current directory
+		printnln('~/terminalMe', 'blue');
 		printnln('$ ');
-		const command: string = await scanf_promise();
+		const fullCommand: string = await scanf_promise();
+		const command: string = fullCommand.split(' ')[0];
+		const args: string[] = fullCommand.split(' ').slice(1);
 		app.removeEventListener('keydown', commandHistoryEventHandler);
 		commandHistory.push(command);
 		commandIterator = commandHistory.length;
-		if (command === 'print') {
-			await printName();
+		switch (command) {
+			case 'clear':
+			  await clearScreen();
+			  break;
+			case '':
+			  break;
+			default: {
+			  if (Object.keys(bin).indexOf(command) === -1) {
+				println(`bash: ${command}: command not found`);
+			  } else {
+				try {
+					//@ts-ignore
+					await bin[command](args);
+				} catch (error) {
+					println(`bash: ${command}: error while executing command`);
+					println(String(error) );
+				}
+			  }
+			}
 		}
-		else if (command === 'println') {
-			await printlnName();
-		}
-		else if (command === 'clear') {
-			clearScreen();
-		}
-		else if (command === 'cowsay') {
-			await cowsay();
-		}
-		else if (command === 'figlet') {
-			await figlet(["Hello World"]);
-		}
-
 		app.addEventListener('keydown', commandHistoryEventHandler);
 	}
 }
