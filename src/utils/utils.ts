@@ -7,6 +7,10 @@ export function delay(ms: number): Promise<void> {
 }
 
 export function println(text: string, classname: string | undefined = undefined): void {
+	printSingleLine(text, classname);
+}
+
+function printSingleLine(text: string, classname: string | undefined = undefined): void {
 	const p: HTMLParagraphElement = document.createElement('p');
 	if (classname) {
 		p.className = classname;
@@ -16,12 +20,12 @@ export function println(text: string, classname: string | undefined = undefined)
 }
 
 export function printnln(text: string, classname: string | undefined = undefined): void {
-	const p: HTMLSpanElement = document.createElement('span');
+	const span: HTMLSpanElement = document.createElement('span');
 	if (classname) {
-		p.className = classname;
+		span.className = classname;
 	}
-	p.innerHTML = text;
-	app?.appendChild(p);
+	span.innerHTML = text;
+	app?.appendChild(span);
 }
 
 export function newIine(): void {
@@ -69,13 +73,14 @@ function removeInputField(): void {
 
 function addValueToScreen(value: string): void {
 	if (value === '') return;
-	const div: HTMLElement = document.createElement('section');
-	const i: HTMLElement = document.createElement('i');
 	const mensagem: HTMLHeadingElement = document.createElement('h2');
 	mensagem.textContent = `${value}`;
-	div.appendChild(i);
-	div.appendChild(mensagem);
-	app?.appendChild(div);
+	if (app?.lastChild?.nodeName === 'DIV') {
+		app?.lastChild?.appendChild(mensagem);
+		return;
+	}
+	app?.appendChild(mensagem);
+	
 }
 
 export function scanf_promise(): Promise<string> {
@@ -103,4 +108,12 @@ export function clearScreen(){
 	while (app?.hasChildNodes()) {
 		app?.removeChild(app.firstChild as Node);
 	}
+}
+
+export function createCode(code: string, text: string): void {
+	const p: HTMLParagraphElement = document.createElement('p');
+	p.setAttribute('class', 'code');
+	p.innerHTML = `${code} <br/><span class='text'> ${text} </span>`;
+	app?.appendChild(p);
+	
 }

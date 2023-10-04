@@ -54,6 +54,14 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
+					from: path.resolve(Paths.SRC, 'fonts'),
+					to: Paths.DIST+"/fonts"
+				}
+			]
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
 					from: path.resolve(Paths.SRC, 'favicon.ico'),
 					to: Paths.DIST
 				}
@@ -94,6 +102,17 @@ module.exports = {
 						: '[hash].[ext]',
 					type: 'asset/resource',
 					outputPath: 'img'
+				}
+			},
+			{
+				test: /\.flf$/,
+				loader: 'file-loader',
+				options: {
+					name: Modes.IS_DEVELOPMENT
+						? '[name].[ext]'
+						: '[hash].[ext]',
+					type: 'asset/resource',
+					outputPath: 'fonts'
 				}
 			}
 		]

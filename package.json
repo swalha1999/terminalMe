@@ -20,6 +20,7 @@
 		"url": "https://github.com/d-indifference/webpack-typescript-starter"
 	},
 	"devDependencies": {
+		"@types/figlet": "^1.5.6",
 		"@types/node": "^17.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.7.0",
 		"@typescript-eslint/parser": "^5.7.0",
@@ -47,5 +48,9 @@
 		"webpack": "^5.65.0",
 		"webpack-cli": "^4.9.1",
 		"webpack-dev-server": "^4.6.0"
+	},
+	"dependencies": {
+		"axios": "^1.5.1",
+		"figlet": "^1.6.0"
 	}
 }

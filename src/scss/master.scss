@@ -1,11 +1,11 @@
 	body {
-
+		display: flex;
 		background-color: #222222;
 		height: 100vh;
 		font-family: 'Fira Code', monospace;
 		align-items: center;
 		justify-content: center;
-
+		white-space: pre-wrap;
 		* {
 			margin: 0;
 			padding: 0;
@@ -36,7 +36,11 @@
 		}
 
 		.blue {
-			color: #9CEAF3;
+			color: #322eff;
+		}
+
+		.green {
+			color: #008d0e;
 		}
 
 		a {
@@ -97,6 +101,7 @@
 		.inlineInput{
 			display: flex;
 			flex-direction: row;
+			margin-top: 5px;
 		}
 
 		input {
