@@ -1,17 +1,8 @@
-import { println, scanf_promise, printnln } from '../utils/utils';
+import { println, scanf_promise, printnln, delay } from '../utils/utils';
+import { figletHelp } from './figlet';
 
-export async function printName(args: string[]): Promise<void> {
-	for(let i = 0; i < 5; i++){
-		printnln(`${i} -> `);
-	}
-}
-
-
-export async function printlnName(args: string[]): Promise<void> {
-	println(`	 _   _      _ _       
-	| | | | ___| | | ___  
-	| |_| |/ _ \\ | |/ _ \\ 
-	|  _  |  __/ | | (_) |
-	|_| |_|\\___|_|_|\\___/ `);
+export async function banner(args: string[] = []): Promise<void> {
+	await delay(10000);
+	println(await figletHelp(["Welcome to my website!"]));
 }
 
