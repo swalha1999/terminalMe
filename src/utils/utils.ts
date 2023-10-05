@@ -16,7 +16,9 @@ export function delay(ms: number): Promise<void> {
 }
 
 export function println(text: string, classname: string | undefined = undefined): void {
-	printSingleLine(text, classname);
+	text.split('\n').forEach(line => {
+		printSingleLine(line, classname);
+	});
 }
 
 function printSingleLine(text: string, classname: string | undefined = undefined): void {
@@ -114,10 +116,10 @@ export function scanf_promise(): Promise<string> {
 }
 
 export async function clearScreen(){
-	// app.innerHTML='';
+
 	while (app.hasChildNodes()) {
-		await delay(5);
 		app.removeChild(app.firstChild as Node);
+		await delay(5);
 	}
 }
 

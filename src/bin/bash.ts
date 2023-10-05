@@ -19,26 +19,12 @@ export default function bash(app: HTMLElement | null): void {
 }
 
 function commandHistoryEventHandler(event: KeyboardEvent) {
-	if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
-	const input: HTMLInputElement | null = document.querySelector('input');
-	
-	if (!input) {
-		console.error('there is no input element');
-		return;
-	}
-	
-	if (event.key === 'ArrowUp') {
-		if (commandIterator > 0) {
-			commandIterator--;
-			input.value = commandHistory[commandIterator];
-
-		}
-	} else if (event.key === 'ArrowDown') {
-		if (commandIterator < commandHistory.length - 1) {
-			commandIterator++;
-			input.value = commandHistory[commandIterator];
-		}
-	}
+	if (event.key === 'ArrowUp' && commandIterator > 0) commandIterator--;
+	else if (event.key === 'ArrowDown' && commandIterator < commandHistory.length - 1) commandIterator++;
+	else return;
+	const input: HTMLInputElement = document.querySelector('input') as HTMLInputElement;
+	input.focus();
+	input.value = commandHistory[commandIterator];
 }
 
 async function bashStartup(app: HTMLElement): Promise<void> {

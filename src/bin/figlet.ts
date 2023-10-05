@@ -313,7 +313,6 @@ export const figlet = async (args: string[]): Promise<void> => {
     const text = index !== -1 ? args.slice(index+2, args.length).join(' ') : args.join(' ');
     console.log(font, text);
     let outdata :string | undefined = undefined;
-    // await fetch(`/fonts/${font}.flf`);
     //@ts-ignore
     figletAlice.text(text , font, (err,data)=>{
             if(err){
