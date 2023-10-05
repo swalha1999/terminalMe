@@ -15,7 +15,7 @@ export function delay(ms: number): Promise<void> {
 	return new Promise(res => setTimeout(res, ms));
 }
 
-export function println(text: string, classname: string | undefined = undefined): void {
+export function println(text: String, classname: string | undefined = undefined): void {
 	text.split('\n').forEach(line => {
 		printSingleLine(line, classname);
 	});

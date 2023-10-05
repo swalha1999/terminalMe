@@ -1,7 +1,4 @@
 import { println, scanf_promise, clearScreen , delay, createCode, printnln, getIp} from '../utils/utils';
-// import { printName, printlnName } from '../bin/about';
-// import { cowsay } from './cowsay';
-// import {figlet} from './figlet';
 import * as bin from '../bin';
 
 
@@ -22,7 +19,8 @@ function commandHistoryEventHandler(event: KeyboardEvent) {
 	if (event.key === 'ArrowUp' && commandIterator > 0) commandIterator--;
 	else if (event.key === 'ArrowDown' && commandIterator < commandHistory.length - 1) commandIterator++;
 	else return;
-	const input: HTMLInputElement = document.querySelector('input') as HTMLInputElement;
+	const input: HTMLInputElement | null = document.querySelector('input') ;
+	if (!input) return;
 	input.focus();
 	input.value = commandHistory[commandIterator];
 }
@@ -33,7 +31,7 @@ async function bashStartup(app: HTMLElement): Promise<void> {
 }
 
 async function bashWelcome(): Promise<void> {
-	println('Welcome to my website!');
+	// await bin.banner();
 	await delay(1000);
 	println('Starting the server...');
 	await delay(1000);
@@ -44,7 +42,6 @@ async function bashWelcome(): Promise<void> {
 }
 
 async function bashMainLoop(app: HTMLElement): Promise<void> {
-	// println(`Your IP is ${}`);
 	
 	while (true) {
 		printnln(`swalha@Falc0n`, 'green');
