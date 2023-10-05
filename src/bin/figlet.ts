@@ -9,6 +9,7 @@ export const figlet = async (args: string[]): Promise<void> => {
         figlet -f <font> <text>
         figlet --fonts to list available fonts
         `);
+        return;
     }
 
     if (args[0] === '--fonts') {
@@ -216,6 +217,7 @@ Wavy
 Weird
 Whimsy
 Wow`);
+return;
     }
 
     println((await figletHelp(args)));
