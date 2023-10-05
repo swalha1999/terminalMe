@@ -15,7 +15,7 @@ export function delay(ms: number): Promise<void> {
 	return new Promise(res => setTimeout(res, ms));
 }
 
-export function println(text: String, classname: string | undefined = undefined): void {
+export function println(text: string, classname: string | undefined = undefined): void {
 	text.split('\n').forEach(line => {
 		printSingleLine(line, classname);
 	});
@@ -67,7 +67,7 @@ function newInputField(isBash = false): void {
 	input.type = 'text';
 	input.autofocus = true;
 	div.appendChild(input);
-	while (app.lastChild !== null && app.lastChild.nodeName === 'SPAN')  {
+	while (app.lastChild !== null && app.lastChild.nodeName === 'SPAN') {
 		const lastChild = app.lastChild;
 		app.removeChild(lastChild);
 		div.insertBefore(lastChild as Node, div.firstChild);
@@ -91,10 +91,9 @@ function addValueToScreen(value: string): void {
 		return;
 	}
 	app.appendChild(mensagem);
-	
 }
 
-export function scanf_promise(): Promise<string> {
+export function scanf(): Promise<string> {
 	return new Promise(resolve => {
 		newInputField();
 		addInputListener();
@@ -115,7 +114,7 @@ export function scanf_promise(): Promise<string> {
 	});
 }
 
-export async function clearScreen(){
+export async function clearScreen() {
 
 	while (app.hasChildNodes()) {
 		app.removeChild(app.firstChild as Node);
@@ -128,5 +127,4 @@ export function createCode(code: string, text: string): void {
 	p.setAttribute('class', 'code');
 	p.innerHTML = `${code} <br/><span class='text'> ${text} </span>`;
 	app.appendChild(p);
-	
 }

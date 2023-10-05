@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export const getProjects = async () => {
   const { data } = await axios.get(
-    `https://api.github.com/users/J0kErF/repos`,
+    'https://api.github.com/users/J0kErF/repos',
   );
 
   return data;

@@ -1,4 +1,4 @@
-import figletAlice, {Fonts} from 'figlet';
+import figletAlice, { Fonts } from 'figlet';
 import { println, printnln, createCode, delay } from '../utils/utils';
 
 export const figlet = async (args: string[]): Promise<void> => {
@@ -221,17 +221,17 @@ return;
     }
 
     println((await figletHelp(args)));
-}
+};
 
-export const figletHelp = async (args: string[] = []): Promise<String> => {
-    const index = args.findIndex((arg) => arg === '-f');
-    const font = index !== -1 ? args[index + 1] : 'Standard';   
-    const text = index !== -1 ? args.slice(index+2, args.length).join(' ') : args.join(' ');
+export const figletHelp = async (args: string[] = []): Promise<string> => {
+    const index = args.findIndex(arg => arg === '-f');
+    const font = index !== -1 ? args[index + 1] : 'Standard';
+    const text = index !== -1 ? args.slice(index + 2, args.length).join(' ') : args.join(' ');
     console.log(font, text);
-    let outdata :string | undefined = undefined;
-    //@ts-ignore
-    figletAlice.text(text , font, (err,data)=>{
-            if(err){
+    let outdata :string | undefined;
+    //  @ts-ignore
+    figletAlice.text(text, font, (err, data) => {
+            if (err) {
                 console.log('Something went wrong...');
                 console.dir(err);
                 return;
@@ -241,10 +241,10 @@ export const figletHelp = async (args: string[] = []): Promise<String> => {
     );
     const font2 = index !== -1 ? args[index + 1] : 'Standard';
     const font3: Fonts = font2 as Fonts;
-    const text2 = index !== -1 ? args.slice(index+2, args.length).join(' ') : args.join(' ');
+    const text2 = index !== -1 ? args.slice(index + 2, args.length).join(' ') : args.join(' ');
     await delay(200);
-    figletAlice.text(text2 , font3, (err,data)=>{
-        if(err){
+    figletAlice.text(text2, font3, (err, data) => {
+        if (err) {
             console.log('Something went wrong...');
             console.dir(err);
             return;
@@ -253,5 +253,5 @@ export const figletHelp = async (args: string[] = []): Promise<String> => {
     }
     );
 
-    return outdata ?  outdata : "please try again. tap the up arrow and press enter";
-}
+    return outdata ? outdata : 'please try again. tap the up arrow and press enter';
+};

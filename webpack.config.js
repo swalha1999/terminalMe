@@ -5,6 +5,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const miniCss = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 class Modes {
 	static IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
@@ -55,7 +56,7 @@ module.exports = {
 			patterns: [
 				{
 					from: path.resolve(Paths.SRC, 'fonts'),
-					to: Paths.DIST+"/fonts"
+					to: `${Paths.DIST}/fonts`
 				}
 			]
 		}),
@@ -66,6 +67,12 @@ module.exports = {
 					to: Paths.DIST
 				}
 			]
+		}),
+		new ESLintPlugin({
+			useEslintrc: true,
+			fix: false,
+			eslintPath: require.resolve('eslint'),
+			extensions: ['ts']
 		}),
 		new miniCss({
 			filename: Modes.IS_DEVELOPMENT

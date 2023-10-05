@@ -1,6 +1,5 @@
-import { println, scanf_promise, clearScreen , delay, createCode, printnln, getIp} from '../utils/utils';
+import { println, scanf, clearScreen, delay, createCode, printnln, getIp } from '../utils/utils';
 import * as bin from '../bin';
-
 
 
 const commandHistory: string[] = [];
@@ -19,7 +18,7 @@ function commandHistoryEventHandler(event: KeyboardEvent) {
 	if (event.key === 'ArrowUp' && commandIterator > 0) commandIterator--;
 	else if (event.key === 'ArrowDown' && commandIterator < commandHistory.length - 1) commandIterator++;
 	else return;
-	const input: HTMLInputElement | null = document.querySelector('input') ;
+	const input: HTMLInputElement | null = document.querySelector('input');
 	if (!input) return;
 	input.focus();
 	input.value = commandHistory[commandIterator];
@@ -42,13 +41,13 @@ async function bashWelcome(): Promise<void> {
 }
 
 async function bashMainLoop(app: HTMLElement): Promise<void> {
-	
+
 	while (true) {
-		printnln(`swalha@Falc0n`, 'green');
+		printnln('swalha@Falc0n', 'green');
 		printnln(':');
 		printnln('~/terminalMe', 'blue');
 		printnln('$ ');
-		const fullCommand: string = await scanf_promise();
+		const fullCommand: string = await scanf();
 		const command: string = fullCommand.split(' ')[0];
 		const args: string[] = fullCommand.split(' ').slice(1);
 		app.removeEventListener('keydown', commandHistoryEventHandler);
@@ -65,11 +64,11 @@ async function bashMainLoop(app: HTMLElement): Promise<void> {
 				println(`bash: ${command}: command not found`);
 			  } else {
 				try {
-					//@ts-ignore
+					//	@ts-ignore
 					await bin[command](args);
 				} catch (error) {
 					println(`bash: ${command}: error while executing command`);
-					println(String(error) );
+					println(String(error));
 				}
 			  }
 			}

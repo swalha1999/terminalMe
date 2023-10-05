@@ -12,7 +12,7 @@ app?.addEventListener('click', event => {
 });
 
 // document?.addEventListener('keydown', event => {
-// 	// check for ctrl + c 
+// 	// check for ctrl + c
 // 	if (event.ctrlKey && event.key === 'c') {
 // 		throw new Error('terminated by user');
 // 	}
