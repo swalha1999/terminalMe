@@ -4,7 +4,6 @@ const months = [
     'August', 'Septemper', 'October', 'November', 'December'
 ];
 
-
 export const calHelper = (args: string[]): string => {
     let calString = '';
 

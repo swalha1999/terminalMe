@@ -26,11 +26,10 @@ function commandHistoryEventHandler(event: KeyboardEvent) {
 
 async function bashStartup(app: HTMLElement): Promise<void> {
 	await bashWelcome();
-	bashMainLoop(app);
+	await bashMainLoop(app);
 }
 
 async function bashWelcome(): Promise<void> {
-	// await bin.banner();
 	await bin['about']([]);
 	newLine();
 	println('Starting the server...');
