@@ -70,7 +70,7 @@ module.exports = {
 		}),
 		new ESLintPlugin({
 			useEslintrc: true,
-			fix: false,
+			fix: true,
 			eslintPath: require.resolve('eslint'),
 			extensions: ['ts']
 		}),
