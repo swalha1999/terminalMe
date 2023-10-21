@@ -21,7 +21,7 @@ export function println(text: string, classname: string | undefined = undefined)
 	});
 }
 
-function printSingleLine(text: string, classname: string | undefined = undefined): void {
+export function printSingleLine(text: string, classname: string | undefined = undefined): void {
 	const p: HTMLParagraphElement = document.createElement('p');
 	if (classname) {
 		p.className = classname;
