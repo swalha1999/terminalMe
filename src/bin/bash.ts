@@ -54,7 +54,9 @@ async function bashMainLoop(app: HTMLElement): Promise<void> {
 		const command: string = fullCommand.split(' ')[0];
 		const args: string[] = fullCommand.split(' ').slice(1);
 		app.removeEventListener('keydown', commandHistoryEventHandler);
-		commandHistory.push(fullCommand);
+		if (commandHistory[commandHistory.length - 1] !== fullCommand) {
+			commandHistory.push(fullCommand);
+		}
 		commandIterator = commandHistory.length;
 		switch (command) {
 			case 'clear':
