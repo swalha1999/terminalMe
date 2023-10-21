@@ -1,4 +1,4 @@
-import { println, scanf, clearScreen, delay, createCode, printnln, getIp } from '../utils/utils';
+import { println, scanf, clearScreen, delay, createCode, printnln, getIp, newLine } from '../utils/utils';
 import * as bin from '../bin';
 
 
@@ -31,13 +31,16 @@ async function bashStartup(app: HTMLElement): Promise<void> {
 
 async function bashWelcome(): Promise<void> {
 	// await bin.banner();
-	await delay(1000);
+	await bin['about']([]);
+	newLine();
 	println('Starting the server...');
-	await delay(1000);
+	await delay(500);
+	newLine();
 	println('You can run several commands:');
 	createCode('about', 'Who am I and what do I do.');
 	createCode('help or -h', 'See all commands.');
 	createCode('social -a', 'All my social networks.');
+	await delay(500);
 }
 
 async function bashMainLoop(app: HTMLElement): Promise<void> {

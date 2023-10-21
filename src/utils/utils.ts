@@ -39,9 +39,10 @@ export function printnln(text: string, classname: string | undefined = undefined
 	app.appendChild(span);
 }
 
-export function newIine(): void {
-	const p: HTMLElement = document.createElement('p');
-	app.appendChild(p);
+export function newLine(): void {
+	const span: HTMLSpanElement = document.createElement('span');
+	span.innerHTML = '<br/>';
+	app.appendChild(span);
 }
 
 function saveInput(event: KeyboardEvent): void {
@@ -60,7 +61,7 @@ function removeInputListener(): void {
 	document.removeEventListener('keypress', saveInput);
 }
 
-function newInputField(isBash = false): void {
+function newInputField(): void {
 	const div: HTMLElement = document.createElement('div');
 	div.setAttribute('class', 'inlineInput');
 	const input: HTMLInputElement = document.createElement('input');
