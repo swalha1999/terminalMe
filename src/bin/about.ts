@@ -31,17 +31,6 @@ export const email = async (args: string[]): Promise<void> => {
   println('Opening mailto:mohamd514.m@gmail.com and copied to clipboard.');
 };
 
-export const vi = async (args: string[]): Promise<string> => {
-  return 'why use vi? try \'emacs\'.';
-};
-
-export const vim = async (args: string[]): Promise<string> => {
-  return 'why use vim? try \'emacs\'.';
-};
-
-export const emacs = async (args?: string[]): Promise<string> => {
-  return 'really? emacs? you should be using \'vim\'';
-};
 
 export const cv = async (args?: string[]): Promise<void> => {
   window.open('https://drive.google.com/file/d/1Pj-JEeNdc7GYFM1zev0Yc4xdvEeND3vI/view?usp=sharing');
