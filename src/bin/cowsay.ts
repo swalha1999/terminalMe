@@ -1,4 +1,4 @@
-import { getQuote } from '../utils/api';
+import { getQuote } from '../utils/apiReq';
 import { println } from '../utils/utils';
 
 export const cowsay = async (args: string[] = []): Promise<void> => {

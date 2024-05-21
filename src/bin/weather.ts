@@ -1,4 +1,4 @@
-import { getWeather } from '../utils/api';
+import { getWeather } from '../utils/apiReq';
 import { println } from '../utils/utils';
 
 export const weather = async (args: string[]): Promise<void> => {

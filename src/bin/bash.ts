@@ -1,4 +1,4 @@
-import { println, scanf, clearScreen, delay, createCode, printnln, getIp, newLine } from '../utils/utils';
+import { println, scanf, clearScreen, delay, createCode, printnln as printNln, getIp, newLine } from '../utils/utils';
 import * as bin from '../bin';
 
 
@@ -25,11 +25,11 @@ function commandHistoryEventHandler(event: KeyboardEvent) {
 }
 
 async function bashStartup(app: HTMLElement): Promise<void> {
-	await bashWelcome();
+	await bashWelcomeMessage();
 	await bashMainLoop(app);
 }
 
-async function bashWelcome(): Promise<void> {
+async function bashWelcomeMessage(): Promise<void> {
 	await bin['about']([]);
 	newLine();
 	println('Starting the server...');
@@ -45,10 +45,10 @@ async function bashWelcome(): Promise<void> {
 async function bashMainLoop(app: HTMLElement): Promise<void> {
 
 	while (true) {
-		printnln('swalha@Falc0n', 'green');
-		printnln(':');
-		printnln('~/terminalMe', 'blue');
-		printnln('$ ');
+		printNln('swalha@Falc0n', 'green');
+		printNln(':');
+		printNln('~/terminalMe', 'blue');
+		printNln('$ ');
 		const fullCommand: string = await scanf();
 		const command: string = fullCommand.split(' ')[0];
 		const args: string[] = fullCommand.split(' ').slice(1);

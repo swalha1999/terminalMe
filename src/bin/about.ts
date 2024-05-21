@@ -33,7 +33,7 @@ export const email = async (args: string[]): Promise<void> => {
 
 
 export const cv = async (args?: string[]): Promise<void> => {
-  window.open('https://drive.google.com/file/d/1Pj-JEeNdc7GYFM1zev0Yc4xdvEeND3vI/view?usp=sharing');
+  window.open('https://docs.google.com/document/d/11VdFwvsqrj2-j_tErwOoT7EcldT82h0QnSI6wPzHhoM/edit?usp=sharing');
   println('Opening CV...');
 };
 

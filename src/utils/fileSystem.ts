@@ -102,6 +102,9 @@ root.addFolder('sbin');
 root.addFolder('srv');
 root.addFolder('tmp');
 root.addFolder('var');
+root.getFolder('home')?.addFolder('swalha');
+root.getFolder('home')?.addFolder('user');
+root.getFolder('home')?.addFolder('guest');
 
 export default root;
 
