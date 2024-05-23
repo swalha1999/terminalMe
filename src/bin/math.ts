@@ -1,17 +1,8 @@
-import {
-    atan2,
-    chain,
-    derivative,
-    e,
-    evaluate,
-    log,
-    pi,
-    pow,
-    round,
-    sqrt,
-    parse,
-    cos
-  } from 'mathjs';
+// import {
+//     derivative,
+//     evaluate,
+//     parse,
+//   } from 'mathjs';
   import { println } from '../utils/utils';
 // const parser = math.parser();
 
@@ -48,8 +39,10 @@ export const evl = async (args: string[]) => {
     }
 
     const expression = args.join(' ');
+    import('mathjs').then(math => {
+        println(math.evaluate(expression, math).toString());
+    });
 
-    println(evaluate(expression, math).toString());
 
     };
 
@@ -67,9 +60,9 @@ export const der = async (args: string[]) => {
     }
 
     const expression = args.join(' ');
-
-    println(derivative(expression, 'x').toString());
-
+    import('mathjs').then(math => {
+        println(math.derivative(expression, 'x').toString());
+    });
     };
 
 export const tex = async (args: string[]) => {
@@ -87,6 +80,7 @@ export const tex = async (args: string[]) => {
 
     const expression = args.join(' ');
 
-    println(parse(expression).toTex());
-
+    import('mathjs').then(math => {
+        println(math.parse(expression).toTex());
+    });
     };

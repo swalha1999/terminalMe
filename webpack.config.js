@@ -43,9 +43,10 @@ module.exports = {
 			'@scss': `${Paths.SRC}/scss`
 		}
 	},
-	output: {
-		filename: Modes.IS_PRODUCTION ? 'bundle.[contenthash].js' : 'bundle.js',
-		path: Paths.DIST
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+		},
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
