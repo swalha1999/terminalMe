@@ -1,6 +1,7 @@
 // class to save file names and add new files to the list
 
 class Folder {
+
     public folders: Folder[] = [];
 
     public files: Files[] = [];
@@ -21,6 +22,15 @@ class Folder {
         const result = this.folders.map(folder => folder.name).join('  ');
         return result;
     }
+
+    public getFoldersArray(): Folder[] {
+        return this.folders;
+    }
+
+    public getFilesArray(): Files[] {
+        return this.files;
+    }
+
 
     public getParent(): Folder | null {
         return this.parent;
@@ -50,9 +60,13 @@ class Folder {
   }
 
 class Files {
-    constructor(public name: string, public content: string) {
+
+    public color = '';
+
+    constructor(public name: string, public content: string, public InputColor?: string) {
         this.name = name;
         this.content = content;
+        this.color = InputColor || '';
     }
 
     public getContent(): string {
@@ -69,6 +83,10 @@ class Files {
 
     public setName(name: string): void {
         this.name = name;
+    }
+
+    public getColor(): string {
+        return this.color;
     }
 
 
@@ -104,7 +122,6 @@ root.addFolder('tmp');
 root.addFolder('var');
 root.getFolder('home')?.addFolder('swalha');
 root.getFolder('home')?.addFolder('user');
-root.getFolder('home')?.addFolder('guest');
 
 export default root;
 

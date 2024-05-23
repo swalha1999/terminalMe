@@ -5,4 +5,5 @@ export * from './userIp';
 export * from './weather';
 export * from './date';
 export * from './fileSystem';
+export * from './math';
 // export * from './bash'
