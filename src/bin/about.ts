@@ -5,7 +5,6 @@ import * as bin from './index';
 
 export async function about(args: string[] = []): Promise<void> {
 	println(await figletHelp(['Hello World!']), 'red');
-	println('MUHAMMAD SWALHA');
 	println('Motivated computer science student seeking part-time or full-time software development roles.');
 	println('Experienced in C/C++, Java, JavaScript, Python, GoLang, Docker/K8, Linux/Unix, React, and Angular.');
 	println('Worked as a Software Engineering Intern at Google, Tel Aviv.');
@@ -39,7 +38,7 @@ export const email = async (args: string[]): Promise<void> => {
 
 
 export const cv = async (args?: string[]): Promise<void> => {
-  window.open('https://docs.google.com/document/d/11VdFwvsqrj2-j_tErwOoT7EcldT82h0QnSI6wPzHhoM/edit?usp=sharing');
+  window.open('https://docs.google.com/document/d/1mKQ2ki2xilXIz6UJKz_0C6EPwN0Df7XAj0-dSZxGWCc');
   println('Opening CV...');
 };
 
