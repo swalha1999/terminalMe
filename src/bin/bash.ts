@@ -38,7 +38,6 @@ async function bashWelcomeMessage(): Promise<void> {
 	println('You can run several commands:');
 	createCode('about', 'Who am I and what do I do.');
 	createCode('help or -h', 'See all commands.');
-	createCode('social -a', 'All my social networks.');
 	await delay(500);
 }
 
