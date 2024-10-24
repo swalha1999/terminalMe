@@ -69,6 +69,17 @@ module.exports = {
 				}
 			]
 		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(Paths.SRC, '*.html'), // Copy all HTML files
+					to: Paths.DIST,
+					globOptions: {
+						ignore: ['**/index.html'], // Ignore index.html if it's already handled by HTMLWebpackPlugin
+					}
+				}
+			]
+		}),
 		new ESLintPlugin({
 			useEslintrc: true,
 			fix: true,

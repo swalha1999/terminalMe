@@ -5,10 +5,12 @@ import * as bin from './index';
 
 export async function about(args: string[] = []): Promise<void> {
 	println(await figletHelp(['Hello World!']), 'red');
-	println('My name is Muhammad Swalha, I\'m a software developer.');
-	println('I\'m a Computer Science student and I\'m currently working at Google TLV as a Software Engineer Intern.');
-	println('I\'m passionate about programming and I love to learn new things.');
-	println('I\'m a fast learner, I\'m a team player and I\'m a hard worker.');
+	println('MUHAMMAD SWALHA');
+	println('Motivated computer science student seeking part-time or full-time software development roles.');
+	println('Experienced in C/C++, Java, JavaScript, Python, GoLang, Docker/K8, Linux/Unix, React, and Angular.');
+	println('Worked as a Software Engineering Intern at Google, Tel Aviv.');
+	println('Mentor at FIRST Robotics Competition since 2015.');
+	println('Studying Computer Science at University of Haifa (GPA 83).');
 }
 
 export async function banner(args: string[] = []): Promise<void> {
@@ -23,6 +25,10 @@ export const allc = async (args: string[]): Promise<void> => {
   const commands = Object.keys(bin).sort()
 .join(', ');
   println(`Available commands:\n${commands}\n\n[tab]\t trigger completion.\n[ctrl+l] clear terminal.\n[ctrl+c] cancel command.`);
+};
+
+export const help = async (args: string[]): Promise<void> => {
+  await allc(args);
 };
 
 export const email = async (args: string[]): Promise<void> => {
